@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StickyMobileBar from "@/components/StickyMobileBar";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import ScrollToTop from "@/components/ScrollToTop";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Doctors from "./pages/Doctors";
@@ -25,6 +26,7 @@ const App = () => (
       <Sonner />
       <LanguageProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <Navbar />
           <main>
             <Routes>
