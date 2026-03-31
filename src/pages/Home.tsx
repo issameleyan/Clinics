@@ -274,13 +274,13 @@ const Home = () => {
             <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
               <Link to="/booking">{t("احجز موعد", "Book Appointment")}</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+            <Button asChild size="lg" className="border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary">
               <a href="https://wa.me/966500000000" target="_blank" rel="noopener noreferrer">
                 <MessageCircle size={18} className="me-2" />
                 {t("واتساب", "WhatsApp")}
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+            <Button asChild size="lg" className="border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary">
               <a href="tel:+966500000000">
                 <Phone size={18} className="me-2" />
                 {t("اتصل الآن", "Call Now")}

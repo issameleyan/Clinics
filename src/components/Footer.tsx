@@ -162,8 +162,8 @@ const Footer = () => {
         </div>
 
         {/* Text hover effect */}
-        <div className="hidden h-24 items-center justify-center md:flex">
-          <TextHoverEffect text="SMILE" />
+        <div className="hidden h-48 items-center justify-center md:flex">
+          <TextHoverEffect text="SMILE" className="h-48" />
         </div>
       </div>
 
