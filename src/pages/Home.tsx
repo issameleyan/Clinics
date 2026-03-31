@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Star, Shield, Users, Award, Phone, MessageCircle, MapPin, Clock, Quote, Stethoscope } from "lucide-react";
+import { Star, Shield, Users, Award, Phone, MessageCircle, MapPin, Clock, Stethoscope, Sparkles, Zap, ChevronRight } from "lucide-react";
 import { StatisticsCards } from "@/components/ui/statistics-card-1";
 import { useLang } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import HeroSection from "@/components/ui/hero-section-9";
 import { LandingAccordionItem } from "@/components/ui/interactive-image-accordion";
 import { TestimonialsSection } from "@/components/ui/testimonial-v2";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
+import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-dental.jpg";
 import beforeAfter2 from "@/assets/before-after-2.jpg";
 import doctor1 from "@/assets/doctor-1.jpg";
@@ -18,77 +19,38 @@ const Home = () => {
   const navigate = useNavigate();
 
   const clinicStats = [
-    {
-      title: t("إجمالي المرضى", "Total Patients"),
-      value: 12380,
-      delta: 15.1,
-      lastMonth: 10592,
-      positive: true,
-    },
-    {
-      title: t("المواعيد المحجوزة", "Booked Appointments"),
-      value: 1902,
-      delta: 8.3,
-      lastMonth: 1756,
-      positive: true,
-    },
-    {
-      title: t("نسبة الرضا", "Satisfaction Rate"),
-      value: 98,
-      delta: 0.4,
-      lastMonth: 97,
-      positive: true,
-      suffix: "%",
-    },
-    {
-      title: t("سنوات الخبرة", "Years of Experience"),
-      value: 15,
-      delta: 6.7,
-      lastMonth: 14,
-      positive: true,
-      suffix: "+",
-    },
+    { title: t("إجمالي المرضى", "Total Patients"), value: 12380, delta: 15.1, lastMonth: 10592, positive: true },
+    { title: t("المواعيد المحجوزة", "Booked Appointments"), value: 1902, delta: 8.3, lastMonth: 1756, positive: true },
+    { title: t("نسبة الرضا", "Satisfaction Rate"), value: 98, delta: 0.4, lastMonth: 97, positive: true, suffix: "%" },
+    { title: t("سنوات الخبرة", "Years of Experience"), value: 15, delta: 6.7, lastMonth: 14, positive: true, suffix: "+" },
   ];
 
   const serviceAccordionItems = [
-    {
-      id: 1,
-      title: t("تنظيف الأسنان", "Teeth Cleaning"),
-      imageUrl: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
-    },
-    {
-      id: 2,
-      title: t("تبييض الأسنان", "Teeth Whitening"),
-      imageUrl: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=2070&auto=format&fit=crop",
-    },
-    {
-      id: 3,
-      title: t("تقويم الأسنان", "Orthodontics"),
-      imageUrl: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
-    },
-    {
-      id: 4,
-      title: t("زراعة الأسنان", "Dental Implants"),
-      imageUrl: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop",
-    },
-    {
-      id: 5,
-      title: t("علاج الجذور", "Root Canal"),
-      imageUrl: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=2070&auto=format&fit=crop",
-    },
+    { id: 1, title: t("تنظيف الأسنان", "Teeth Cleaning"), imageUrl: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop" },
+    { id: 2, title: t("تبييض الأسنان", "Teeth Whitening"), imageUrl: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=2070&auto=format&fit=crop" },
+    { id: 3, title: t("تقويم الأسنان", "Orthodontics"), imageUrl: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop" },
+    { id: 4, title: t("زراعة الأسنان", "Dental Implants"), imageUrl: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop" },
+    { id: 5, title: t("علاج الجذور", "Root Canal"), imageUrl: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=2070&auto=format&fit=crop" },
   ];
 
   const doctors = [
-    { img: doctor1, name: t("د. أحمد المنصور", "Dr. Ahmed Al-Mansour"), spec: t("تجميل الأسنان", "Cosmetic Dentistry"), exp: t("١٥ سنة خبرة", "15 years experience") },
-    { img: doctor2, name: t("د. سارة القحطاني", "Dr. Sara Al-Qahtani"), spec: t("تقويم الأسنان", "Orthodontics"), exp: t("١٢ سنة خبرة", "12 years experience") },
-    { img: doctor3, name: t("د. خالد العتيبي", "Dr. Khalid Al-Otaibi"), spec: t("زراعة الأسنان", "Dental Implants"), exp: t("١٠ سنوات خبرة", "10 years experience") },
+    { img: doctor1, name: t("د. أحمد المنصور", "Dr. Ahmed Al-Mansour"), spec: t("تجميل الأسنان", "Cosmetic Dentistry"), exp: t("١٥ سنة خبرة", "15 years experience"), rating: 4.9 },
+    { img: doctor2, name: t("د. سارة القحطاني", "Dr. Sara Al-Qahtani"), spec: t("تقويم الأسنان", "Orthodontics"), exp: t("١٢ سنة خبرة", "12 years experience"), rating: 4.8 },
+    { img: doctor3, name: t("د. خالد العتيبي", "Dr. Khalid Al-Otaibi"), spec: t("زراعة الأسنان", "Dental Implants"), exp: t("١٠ سنوات خبرة", "10 years experience"), rating: 4.9 },
   ];
 
   const whyUs = [
-    { title: t("بدون ألم", "Pain-Free"), desc: t("تقنيات تخدير متقدمة تضمن راحتك", "Advanced anesthesia techniques ensure comfort") },
-    { title: t("جلسات سريعة", "Quick Sessions"), desc: t("معظم العلاجات تنتهي في جلسة واحدة", "Most treatments completed in one session") },
-    { title: t("مواعيد مرنة", "Flexible Hours"), desc: t("نستقبلك من السبت للخميس ٩ص - ٩م", "We welcome you Sat-Thu 9AM-9PM") },
-    { title: t("أسعار مناسبة", "Fair Prices"), desc: t("خطط دفع مريحة وأسعار واضحة", "Comfortable payment plans and transparent pricing") },
+    { icon: Zap, title: t("بدون ألم", "Pain-Free"), desc: t("تقنيات تخدير متقدمة تضمن راحتك الكاملة أثناء العلاج", "Advanced anesthesia techniques ensure complete comfort during treatment") },
+    { icon: Clock, title: t("جلسات سريعة", "Quick Sessions"), desc: t("معظم العلاجات تنتهي في جلسة واحدة — وقتك يهمنا", "Most treatments completed in one session — your time matters") },
+    { icon: Sparkles, title: t("مواعيد مرنة", "Flexible Hours"), desc: t("نستقبلك من السبت للخميس ٩ص - ٩م بمواعيد تناسبك", "We welcome you Sat-Thu 9AM-9PM with appointments that suit you") },
+    { icon: Shield, title: t("أسعار واضحة", "Transparent Pricing"), desc: t("خطط دفع مريحة وأسعار شفافة بدون أي مفاجآت", "Comfortable payment plans and transparent pricing with no surprises") },
+  ];
+
+  const beforeAfterDetails = [
+    { label: t("الحالة", "Case"), value: t("تبييض وتجميل كامل", "Full Whitening & Cosmetic") },
+    { label: t("المدة", "Duration"), value: t("٣ جلسات فقط", "Only 3 Sessions") },
+    { label: t("النتيجة", "Result"), value: t("ابتسامة طبيعية ٩٨٪ رضا", "Natural Smile 98% Satisfaction") },
+    { label: t("التقنية", "Technology"), value: t("ليزر + فينير", "Laser + Veneers") },
   ];
 
   const testimonials = [
@@ -144,7 +106,7 @@ const Home = () => {
       {/* HERO */}
       <div className="relative">
         <AnimatedGradientBackground
-          gradientColors={["#f0fdfa", "#0D9488", "#10B981", "#0D9488", "#f0fdfa", "#10B981", "#0D9488"]}
+          gradientColors={["#EFF6FF", "#2563EB", "#0EA5E9", "#2563EB", "#EFF6FF", "#0EA5E9", "#2563EB"]}
           gradientStops={[0, 30, 45, 60, 75, 88, 100]}
           startingGap={150}
           Breathing={true}
@@ -180,38 +142,85 @@ const Home = () => {
         </div>
       </section>
 
-      {/* BEFORE/AFTER */}
+      {/* BEFORE/AFTER - Interactive */}
       <section className="section-padding bg-section-alt">
-        <div className="container-tight text-center">
-          <h2 className="mb-2 text-3xl font-bold text-foreground">{t("شاهد الفرق بنفسك", "See the Difference")}</h2>
-          <p className="mb-8 text-muted-foreground">{t("نتائج حقيقية من مرضانا", "Real results from our patients")}</p>
-          <div className="mx-auto max-w-xl overflow-hidden rounded-xl shadow-lg">
-            <img src={beforeAfter2} alt={t("قبل وبعد", "Before and After")} className="w-full" loading="lazy" width={800} height={512} />
+        <div className="container-tight">
+          <h2 className="mb-2 text-center text-3xl font-bold text-foreground">{t("شاهد الفرق بنفسك", "See the Difference")}</h2>
+          <p className="mb-10 text-center text-muted-foreground">{t("نتائج حقيقية من مرضانا — قبل وبعد العلاج", "Real results from our patients — before and after treatment")}</p>
+          <div className="grid gap-8 items-center md:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="overflow-hidden rounded-xl shadow-lg"
+            >
+              <img src={beforeAfter2} alt={t("قبل وبعد", "Before and After")} className="w-full transition-transform duration-500 hover:scale-105" loading="lazy" width={800} height={512} />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              <h3 className="text-2xl font-bold text-foreground">{t("تحول حقيقي في ابتسامتك", "A Real Transformation of Your Smile")}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {t(
+                  "نستخدم أحدث تقنيات التجميل والليزر لتحقيق نتائج مذهلة. كل حالة مصممة خصيصاً لتناسب شكل وجهك ولون أسنانك الطبيعي.",
+                  "We use the latest cosmetic and laser technologies to achieve stunning results. Each case is custom-designed to match your facial structure and natural tooth color."
+                )}
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {beforeAfterDetails.map((d, i) => (
+                  <div key={i} className="rounded-lg border border-border bg-background p-3">
+                    <p className="text-xs text-muted-foreground">{d.label}</p>
+                    <p className="text-sm font-semibold text-foreground">{d.value}</p>
+                  </div>
+                ))}
+              </div>
+              <Button asChild size="lg" className="mt-4 gradient-cta border-0 text-primary-foreground">
+                <Link to="/booking">
+                  {t("ابدأ رحلتك اليوم", "Start Your Journey Today")}
+                  <ChevronRight className="ms-1 h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
           </div>
-          <Button asChild size="lg" className="mt-8 gradient-cta border-0 text-primary-foreground">
-            <Link to="/booking">{t("ابدأ رحلتك اليوم", "Start Your Journey Today")}</Link>
-          </Button>
         </div>
       </section>
 
-      {/* DOCTORS */}
+      {/* DOCTORS - Interactive */}
       <section className="section-padding">
         <div className="container-tight">
           <h2 className="mb-2 text-center text-3xl font-bold text-foreground">{t("أطباؤنا", "Our Doctors")}</h2>
           <p className="mb-10 text-center text-muted-foreground">{t("فريق طبي تثق فيه", "A medical team you can trust")}</p>
           <div className="grid gap-6 md:grid-cols-3">
             {doctors.map((d, i) => (
-              <div key={i} className="overflow-hidden rounded-xl border border-border bg-background text-center shadow-sm">
-                <img src={d.img} alt={d.name} className="h-64 w-full object-cover" loading="lazy" width={600} height={600} />
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="group overflow-hidden rounded-xl border border-border bg-background text-center shadow-sm transition-shadow hover:shadow-lg"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img src={d.img} alt={d.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" width={600} height={600} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                  <div className="absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-background/90 px-2.5 py-1 text-xs font-semibold backdrop-blur-sm">
+                    <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
+                    {d.rating}
+                  </div>
+                </div>
                 <div className="p-5">
                   <h3 className="text-lg font-bold text-foreground">{d.name}</h3>
-                  <p className="text-sm text-primary">{d.spec}</p>
+                  <p className="text-sm text-primary font-semibold">{d.spec}</p>
                   <p className="mb-4 text-xs text-muted-foreground">{d.exp}</p>
-                  <Button asChild size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  <Button asChild size="sm" className="w-full gradient-cta border-0 text-primary-foreground">
                     <Link to="/booking">{t("احجز مع الطبيب", "Book with Doctor")}</Link>
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -224,10 +233,21 @@ const Home = () => {
           <p className="mb-10 text-center text-muted-foreground">{t("أسباب حقيقية تخليك تثق فينا", "Real reasons to trust us")}</p>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {whyUs.map((item, i) => (
-              <div key={i} className="rounded-lg border border-border bg-background p-6">
-                <h3 className="mb-2 text-lg font-bold text-primary">{item.title}</h3>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -4 }}
+                className="rounded-lg border border-border bg-background p-6 text-center transition-shadow hover:shadow-md"
+              >
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                  <item.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="mb-2 text-lg font-bold text-foreground">{item.title}</h3>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

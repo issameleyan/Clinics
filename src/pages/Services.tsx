@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
 import { useLang } from "@/contexts/LanguageContext";
-import { Button } from "@/components/ui/button";
+import { GradientCard } from "@/components/ui/gradient-card";
 
 const servicesData = {
   ar: [
-    { title: "تنظيف الأسنان", desc: "إزالة الجير والتصبغات في جلسة واحدة بدون ألم.", benefits: ["جلسة واحدة فقط", "بدون ألم", "نتائج فورية"] },
-    { title: "تبييض الأسنان", desc: "ابتسامة بيضاء ناصعة باستخدام تقنية الليزر.", benefits: ["نتائج من أول جلسة", "آمن على المينا", "يدوم لأشهر"] },
-    { title: "تقويم الأسنان", desc: "تقويم شفاف أو معدني حسب حالتك.", benefits: ["خيارات متعددة", "نتائج مضمونة", "متابعة مستمرة"] },
-    { title: "زراعة الأسنان", desc: "زراعة ثابتة بأحدث التقنيات.", benefits: ["تدوم مدى الحياة", "تبدو طبيعية", "بدون ألم"] },
-    { title: "علاج الجذور", desc: "علاج العصب بتقنيات حديثة بدون خوف.", benefits: ["بدون ألم", "جلسة واحدة", "حفظ السن الطبيعي"] },
-    { title: "تركيبات وتيجان", desc: "تركيبات ثابتة بمظهر طبيعي.", benefits: ["متينة وقوية", "شكل طبيعي", "مريحة"] },
+    { title: "تنظيف الأسنان", desc: "إزالة الجير والتصبغات في جلسة واحدة بدون ألم. نستخدم أحدث أجهزة الموجات فوق الصوتية لضمان نظافة عميقة وشاملة.", badge: "الأكثر طلباً", badgeColor: "#2563EB", gradient: "blue" as const, img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=300&auto=format&fit=crop" },
+    { title: "تبييض الأسنان", desc: "ابتسامة بيضاء ناصعة باستخدام تقنية الليزر المتقدمة. نتائج فورية تدوم لأشهر مع الحفاظ على صحة المينا.", badge: "نتائج فورية", badgeColor: "#0EA5E9", gradient: "sky" as const, img: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=300&auto=format&fit=crop" },
+    { title: "تقويم الأسنان", desc: "تقويم شفاف أو معدني حسب حالتك مع متابعة مستمرة. خيارات متعددة تناسب جميع الأعمار.", badge: "خيارات متعددة", badgeColor: "#6366F1", gradient: "indigo" as const, img: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=300&auto=format&fit=crop" },
+    { title: "زراعة الأسنان", desc: "زراعة ثابتة بأحدث التقنيات العالمية. تدوم مدى الحياة وتبدو طبيعية تماماً.", badge: "تدوم مدى الحياة", badgeColor: "#14B8A6", gradient: "teal" as const, img: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=300&auto=format&fit=crop" },
+    { title: "علاج الجذور", desc: "علاج العصب بتقنيات حديثة بدون خوف أو ألم. نحافظ على سنك الطبيعي بأقل تدخل ممكن.", badge: "بدون ألم", badgeColor: "#8B5CF6", gradient: "purple" as const, img: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=300&auto=format&fit=crop" },
+    { title: "تركيبات وتيجان", desc: "تركيبات ثابتة بمظهر طبيعي ومتانة عالية. مصممة خصيصاً لتناسب شكل ولون أسنانك.", badge: "شكل طبيعي", badgeColor: "#F59E0B", gradient: "amber" as const, img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=300&auto=format&fit=crop" },
   ],
   en: [
-    { title: "Teeth Cleaning", desc: "Remove tartar and stains in one painless session.", benefits: ["One session only", "Pain-free", "Immediate results"] },
-    { title: "Teeth Whitening", desc: "Bright white smile using laser technology.", benefits: ["Results from first session", "Safe for enamel", "Lasts for months"] },
-    { title: "Orthodontics", desc: "Clear or metal braces based on your case.", benefits: ["Multiple options", "Guaranteed results", "Continuous follow-up"] },
-    { title: "Dental Implants", desc: "Permanent implants with latest technology.", benefits: ["Last a lifetime", "Look natural", "Pain-free"] },
-    { title: "Root Canal", desc: "Modern nerve treatment without fear.", benefits: ["Pain-free", "One session", "Preserve natural tooth"] },
-    { title: "Crowns & Bridges", desc: "Fixed prosthetics with natural appearance.", benefits: ["Durable", "Natural look", "Comfortable"] },
+    { title: "Teeth Cleaning", desc: "Remove tartar and stains in one painless session. We use the latest ultrasonic devices for a deep and thorough clean.", badge: "Most Popular", badgeColor: "#2563EB", gradient: "blue" as const, img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=300&auto=format&fit=crop" },
+    { title: "Teeth Whitening", desc: "Bright white smile using advanced laser technology. Immediate results lasting months while preserving enamel health.", badge: "Instant Results", badgeColor: "#0EA5E9", gradient: "sky" as const, img: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=300&auto=format&fit=crop" },
+    { title: "Orthodontics", desc: "Clear or metal braces based on your case with continuous follow-up. Multiple options for all ages.", badge: "Multiple Options", badgeColor: "#6366F1", gradient: "indigo" as const, img: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=300&auto=format&fit=crop" },
+    { title: "Dental Implants", desc: "Permanent implants with the latest global technology. Last a lifetime and look completely natural.", badge: "Lifetime Lasting", badgeColor: "#14B8A6", gradient: "teal" as const, img: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=300&auto=format&fit=crop" },
+    { title: "Root Canal", desc: "Modern nerve treatment without fear or pain. We preserve your natural tooth with minimal intervention.", badge: "Pain-Free", badgeColor: "#8B5CF6", gradient: "purple" as const, img: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=300&auto=format&fit=crop" },
+    { title: "Crowns & Bridges", desc: "Fixed prosthetics with natural appearance and high durability. Custom-designed to match your teeth.", badge: "Natural Look", badgeColor: "#F59E0B", gradient: "amber" as const, img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=300&auto=format&fit=crop" },
   ],
 };
 
@@ -35,23 +35,19 @@ const Services = () => {
       </section>
 
       <section className="section-padding">
-        <div className="container-tight grid gap-6 md:grid-cols-2">
+        <div className="container-tight grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {data.map((s, i) => (
-            <div key={i} className="rounded-xl border border-border bg-background p-6 shadow-sm">
-              <h2 className="mb-2 text-xl font-bold text-foreground">{s.title}</h2>
-              <p className="mb-4 text-sm text-muted-foreground">{s.desc}</p>
-              <ul className="mb-6 space-y-1">
-                {s.benefits.map((b, j) => (
-                  <li key={j} className="flex items-center gap-2 text-sm text-foreground">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <Button asChild size="sm" className="gradient-cta border-0 text-primary-foreground">
-                <Link to="/booking">{t("احجز الآن", "Book Now")}</Link>
-              </Button>
-            </div>
+            <GradientCard
+              key={i}
+              gradient={s.gradient}
+              badgeText={s.badge}
+              badgeColor={s.badgeColor}
+              title={s.title}
+              description={s.desc}
+              ctaText={t("احجز الآن", "Book Now")}
+              ctaHref="/booking"
+              imageUrl={s.img}
+            />
           ))}
         </div>
       </section>
