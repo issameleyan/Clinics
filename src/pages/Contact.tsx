@@ -18,10 +18,19 @@ const Contact = () => {
 
   return (
     <div>
-      <section className="gradient-hero section-padding text-center">
-        <div className="container-tight">
-          <h1 className="text-4xl font-bold text-primary-foreground">{t("تواصل معنا", "Contact Us")}</h1>
-          <p className="mt-4 text-primary-foreground/80">{t("نسعد بالرد على استفساراتك", "We're happy to answer your questions")}</p>
+      {/* Hero with background image */}
+      <section className="relative section-padding text-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop"
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/70" />
+        </div>
+        <div className="container-tight relative z-10 py-8 md:py-12">
+          <h1 className="text-4xl font-bold text-primary-foreground md:text-5xl">{t("تواصل معنا", "Contact Us")}</h1>
+          <p className="mt-4 text-lg text-primary-foreground/90">{t("نسعد بالرد على استفساراتك", "We're happy to answer your questions")}</p>
         </div>
       </section>
 

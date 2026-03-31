@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useLang } from "@/contexts/LanguageContext";
 import { GradientCard } from "@/components/ui/gradient-card";
+import { Button } from "@/components/ui/button";
+import { MessageCircle, CheckCircle } from "lucide-react";
 
 const servicesData = {
   ar: [
@@ -27,10 +29,19 @@ const Services = () => {
 
   return (
     <div>
-      <section className="gradient-hero section-padding text-center">
-        <div className="container-tight">
-          <h1 className="text-4xl font-bold text-primary-foreground">{t("خدمات طب الأسنان في عيادة الابتسامة", "Dental Services at Smile Clinic")}</h1>
-          <p className="mt-4 text-primary-foreground/80">{t("كل ما تحتاجه لابتسامة صحية في مكان واحد", "Everything you need for a healthy smile in one place")}</p>
+      {/* Hero with background image */}
+      <section className="relative section-padding text-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1974&auto=format&fit=crop"
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/70" />
+        </div>
+        <div className="container-tight relative z-10 py-8 md:py-12">
+          <h1 className="text-4xl font-bold text-primary-foreground md:text-5xl">{t("خدمات طب الأسنان في عيادة الابتسامة", "Dental Services at Smile Clinic")}</h1>
+          <p className="mt-4 text-lg text-primary-foreground/90">{t("كل ما تحتاجه لابتسامة صحية في مكان واحد", "Everything you need for a healthy smile in one place")}</p>
         </div>
       </section>
 
@@ -49,6 +60,56 @@ const Services = () => {
               imageUrl={s.img}
             />
           ))}
+        </div>
+      </section>
+
+      {/* CTA Box */}
+      <section className="section-padding bg-section-alt">
+        <div className="container-tight">
+          <div className="grid items-center gap-8 overflow-hidden rounded-2xl border-2 border-primary bg-background shadow-sm md:grid-cols-2">
+            <div className="p-8 md:p-12">
+              <h2 className="mb-3 text-2xl font-bold text-foreground md:text-3xl">
+                {t("مو متأكد وش تحتاج؟", "Not Sure What You Need?")}
+              </h2>
+              <p className="mb-4 text-muted-foreground leading-relaxed">
+                {t(
+                  "لا تقلق — احجز استشارة مجانية مع أحد أطبائنا وخلنا نساعدك تختار العلاج المناسب. بدون أي التزام.",
+                  "Don't worry — book a free consultation with one of our doctors and let us help you choose the right treatment. No commitment required."
+                )}
+              </p>
+              <ul className="mb-6 space-y-2">
+                {[
+                  t("استشارة مجانية بدون أي رسوم", "Free consultation with no fees"),
+                  t("خطة علاج مخصصة لحالتك", "Treatment plan customized for your case"),
+                  t("أسعار واضحة وخيارات تقسيط", "Transparent pricing and installment options"),
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 text-sm text-foreground">
+                    <CheckCircle className="h-4 w-4 shrink-0 text-primary" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild size="lg" className="gradient-cta border-0 text-primary-foreground">
+                  <a href="https://wa.me/966500000000" target="_blank" rel="noopener noreferrer">
+                    <MessageCircle size={18} className="me-2" />
+                    {t("احجز استشارتك المجانية", "Book Your Free Consultation")}
+                  </a>
+                </Button>
+                <Button asChild size="lg" className="border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground">
+                  <Link to="/booking">{t("صفحة الحجز", "Booking Page")}</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="hidden md:block h-full">
+              <img
+                src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=800&auto=format&fit=crop"
+                alt={t("استشارة مجانية", "Free consultation")}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
       </section>
     </div>
