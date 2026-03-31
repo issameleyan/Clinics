@@ -15,9 +15,17 @@ const Booking = () => {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="gradient-hero section-padding text-center">
-        <div className="container-tight">
+      {/* Hero with background image */}
+      <section className="relative section-padding text-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop"
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/70" />
+        </div>
+        <div className="container-tight relative z-10 py-8 md:py-12">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -29,7 +37,7 @@ const Booking = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mt-4 text-lg text-primary-foreground/80"
+            className="mt-4 text-lg text-primary-foreground/90"
           >
             {t("احجز الآن واحصل على استشارة مجانية — الخطوة الأولى أسهل مما تتوقع", "Book now and get a free consultation — the first step is easier than you think")}
           </motion.p>
