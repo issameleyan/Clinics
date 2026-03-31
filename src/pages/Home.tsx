@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Star, Shield, Users, Award, Phone, MessageCircle, MapPin, Clock, Quote, Stethoscope } from "lucide-react";
+import { StatisticsCards } from "@/components/ui/statistics-card-1";
 import { useLang } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/ui/hero-section-9";
