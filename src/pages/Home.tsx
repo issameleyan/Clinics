@@ -17,11 +17,37 @@ const Home = () => {
   const { t, lang } = useLang();
   const navigate = useNavigate();
 
-  const trustItems = [
-    { icon: Users, value: "+1000", label: t("مريض راضٍ", "Happy Patients") },
-    { icon: Shield, value: t("أحدث", "Latest"), label: t("الأجهزة الطبية", "Medical Equipment") },
-    { icon: Award, value: t("أطباء", "Expert"), label: t("متخصصين", "Doctors") },
-    { icon: Clock, value: t("مواعيد", "Flexible"), label: t("مرنة", "Hours") },
+  const clinicStats = [
+    {
+      title: t("إجمالي المرضى", "Total Patients"),
+      value: 12380,
+      delta: 15.1,
+      lastMonth: 10592,
+      positive: true,
+    },
+    {
+      title: t("المواعيد المحجوزة", "Booked Appointments"),
+      value: 1902,
+      delta: 8.3,
+      lastMonth: 1756,
+      positive: true,
+    },
+    {
+      title: t("نسبة الرضا", "Satisfaction Rate"),
+      value: 98,
+      delta: 0.4,
+      lastMonth: 97,
+      positive: true,
+      suffix: "%",
+    },
+    {
+      title: t("سنوات الخبرة", "Years of Experience"),
+      value: 15,
+      delta: 6.7,
+      lastMonth: 14,
+      positive: true,
+      suffix: "+",
+    },
   ];
 
   const serviceAccordionItems = [
