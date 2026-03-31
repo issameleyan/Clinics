@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import { Star, Shield, Users, Award, Phone, MessageCircle, MapPin, Clock, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Star, Shield, Users, Award, Phone, MessageCircle, MapPin, Clock, Quote } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
+import { HeroSection4 } from "@/components/blocks/hero-section-4";
+import { LandingAccordionItem } from "@/components/ui/interactive-image-accordion";
+import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 import heroImg from "@/assets/hero-dental.jpg";
 import beforeAfter2 from "@/assets/before-after-2.jpg";
 import doctor1 from "@/assets/doctor-1.jpg";
@@ -15,15 +18,35 @@ const Home = () => {
     { icon: Users, value: "+1000", label: t("مريض راضٍ", "Happy Patients") },
     { icon: Shield, value: t("أحدث", "Latest"), label: t("الأجهزة الطبية", "Medical Equipment") },
     { icon: Award, value: t("أطباء", "Expert"), label: t("متخصصين", "Doctors") },
-    { icon: Star, value: t("نتائج", "Guaranteed"), label: t("مضمونة", "Results") },
+    { icon: Clock, value: t("مواعيد", "Flexible"), label: t("مرنة", "Hours") },
   ];
 
-  const services = [
-    { title: t("تنظيف الأسنان", "Teeth Cleaning"), desc: t("إزالة الجير والتصبغات في جلسة واحدة", "Remove tartar and stains in one session") },
-    { title: t("تبييض الأسنان", "Teeth Whitening"), desc: t("ابتسامة بيضاء ناصعة من أول جلسة", "Bright white smile from the first session") },
-    { title: t("تقويم الأسنان", "Orthodontics"), desc: t("تقويم شفاف ومريح بنتائج سريعة", "Clear and comfortable braces with fast results") },
-    { title: t("زراعة الأسنان", "Dental Implants"), desc: t("زراعة ثابتة تدوم مدى الحياة", "Permanent implants that last a lifetime") },
-    { title: t("علاج الجذور", "Root Canal"), desc: t("علاج بدون ألم ونتائج فورية", "Painless treatment with immediate results") },
+  const serviceAccordionItems = [
+    {
+      id: 1,
+      title: t("تنظيف الأسنان", "Teeth Cleaning"),
+      imageUrl: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
+    },
+    {
+      id: 2,
+      title: t("تبييض الأسنان", "Teeth Whitening"),
+      imageUrl: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+      id: 3,
+      title: t("تقويم الأسنان", "Orthodontics"),
+      imageUrl: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
+    },
+    {
+      id: 4,
+      title: t("زراعة الأسنان", "Dental Implants"),
+      imageUrl: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop",
+    },
+    {
+      id: 5,
+      title: t("علاج الجذور", "Root Canal"),
+      imageUrl: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=2070&auto=format&fit=crop",
+    },
   ];
 
   const doctors = [
@@ -48,50 +71,43 @@ const Home = () => {
 
   return (
     <div>
-      {/* HERO */}
-      <section className="relative flex min-h-[85vh] items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroImg} alt={t("عيادة الابتسامة", "Smile Clinic")} className="h-full w-full object-cover" width={1920} height={1080} />
-          <div className="gradient-hero absolute inset-0" />
-        </div>
-        <div className="container-tight relative z-10 px-4 py-20">
-          <div className="max-w-2xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-foreground/20 px-4 py-1.5 text-sm text-primary-foreground">
-              <Star size={14} fill="currentColor" />
-              {t("تقييم عالي من مرضانا", "Highly rated by our patients")}
-            </div>
-            <h1 className="mb-4 text-4xl font-extrabold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
-              {t("ابتسامة صحية تبدأ من عيادة الابتسامة", "A Healthy Smile Starts at Smile Clinic")}
-            </h1>
-            <p className="mb-2 text-lg text-primary-foreground/90 md:text-xl">
-              {t(
-                "رعاية متكاملة لأسنانك في الرياض — بدون ألم وبنتائج من أول جلسة",
-                "Complete dental care in Riyadh — pain-free with results from the first session"
-              )}
-            </p>
-            <p className="mb-8 text-sm font-medium text-primary-foreground/70">
-              {t("جلسات سريعة — نتائج فورية", "Quick sessions — Immediate results")}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="gradient-cta border-0 text-primary-foreground shadow-lg">
-                <Link to="/booking">{t("احجز موعد الآن", "Book Now")}</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20">
-                <a href="https://wa.me/966500000000" target="_blank" rel="noopener noreferrer">
-                  <MessageCircle size={18} className="me-2" />
-                  {t("تواصل عبر واتساب", "Chat on WhatsApp")}
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* HERO - using hero-section-4 with animated gradient background */}
+      <div className="relative">
+        <AnimatedGradientBackground
+          gradientColors={["#f0fdfa", "#0D9488", "#10B981", "#0D9488", "#f0fdfa", "#10B981", "#0D9488"]}
+          gradientStops={[0, 30, 45, 60, 75, 88, 100]}
+          startingGap={150}
+          Breathing={true}
+          animationSpeed={0.01}
+          breathingRange={3}
+          containerClassName="opacity-20"
+        />
+        <HeroSection4
+          badge={t("⭐ تقييم عالي من مرضانا", "⭐ Highly rated by our patients")}
+          headline={t(
+            "ابتسامة صحية تبدأ من عيادة الابتسامة",
+            "A Healthy Smile Starts at Smile Clinic"
+          )}
+          subheadline={t(
+            "رعاية متكاملة لأسنانك باستخدام أحدث التقنيات في الرياض، مع تجربة مريحة ونتائج واضحة",
+            "Complete dental care using the latest technologies in Riyadh, with a comfortable experience and clear results"
+          )}
+          trustLine={t("موثوق من مئات المرضى في الرياض", "Trusted by hundreds of patients in Riyadh")}
+          primaryCta={{ text: t("احجز موعد الآن", "Book Now"), href: "/booking" }}
+          secondaryCta={{
+            text: t("تواصل عبر واتساب", "Chat on WhatsApp"),
+            href: "https://wa.me/966500000000",
+            icon: <MessageCircle size={18} className="me-2" />,
+          }}
+          backgroundImage={heroImg}
+        />
+      </div>
 
       {/* TRUST */}
       <section className="section-padding bg-section-alt">
         <div className="container-tight grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
           {trustItems.map((item, i) => (
-            <div key={i} className="flex flex-col items-center rounded-lg bg-background p-6 text-center shadow-sm">
+            <div key={i} className="flex flex-col items-center rounded-lg bg-background p-6 text-center shadow-sm border border-border">
               <item.icon size={28} className="mb-2 text-primary" />
               <span className="text-2xl font-bold text-foreground">{item.value}</span>
               <span className="text-sm text-muted-foreground">{item.label}</span>
@@ -100,24 +116,19 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SERVICES */}
+      {/* SERVICES - using interactive-image-accordion */}
       <section className="section-padding">
         <div className="container-tight">
-          <h2 className="mb-2 text-center text-3xl font-bold text-foreground">{t("خدماتنا", "Our Services")}</h2>
-          <p className="mb-10 text-center text-muted-foreground">
-            {t("نوفر جميع خدمات طب الأسنان تحت سقف واحد", "All dental services under one roof")}
-          </p>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => (
-              <div key={i} className="group rounded-lg border border-border bg-background p-6 transition-all hover:border-primary hover:shadow-md">
-                <h3 className="mb-2 text-lg font-semibold text-foreground">{s.title}</h3>
-                <p className="mb-4 text-sm text-muted-foreground">{s.desc}</p>
-                <Button asChild size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  <Link to="/booking">{t("احجز الآن", "Book Now")}</Link>
-                </Button>
-              </div>
-            ))}
-          </div>
+          <LandingAccordionItem
+            items={serviceAccordionItems}
+            leftTitle={t("خدماتنا", "Our Services")}
+            leftDescription={t(
+              "نقدم مجموعة متكاملة من خدمات طب الأسنان لمساعدتك على الحفاظ على ابتسامة صحية وجميلة",
+              "We offer a comprehensive range of dental services to help you maintain a healthy and beautiful smile"
+            )}
+            ctaText={t("احجز الآن", "Book Now")}
+            ctaHref="/booking"
+          />
         </div>
       </section>
 
