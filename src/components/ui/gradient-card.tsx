@@ -83,7 +83,7 @@ const GradientCard = React.forwardRef<HTMLDivElement, GradientCardProps>(
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
-        </motion.div>
+        </div>
       </motion.div>
     );
   }
