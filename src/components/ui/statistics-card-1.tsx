@@ -1,12 +1,6 @@
 import { cn } from "@/lib/utils";
-import { ArrowDown, ArrowUp, MoreHorizontal, Settings, Pin, Share2, Trash, TriangleAlert } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { ArrowDown, ArrowUp } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface StatItem {
   title: string;
@@ -36,71 +30,44 @@ export function StatisticsCards({ stats, className }: StatisticsCardsProps) {
     <div className={cn("w-full", className)}>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, index) => (
-          <div
+          <motion.div
             key={index}
-            className="flex flex-col rounded-xl border border-border bg-card text-card-foreground shadow-sm"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            whileHover={{ y: -6, scale: 1.02 }}
+            className="group flex flex-col rounded-xl border border-border bg-card text-card-foreground shadow-sm transition-shadow hover:shadow-lg hover:border-primary/30 cursor-default"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-border px-5 py-3">
-              <span className="text-sm font-medium text-muted-foreground">
+            <div className="flex items-center justify-between px-5 py-3 border-b border-border">
+              <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                 {stat.title}
               </span>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="inline-flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground transition-colors">
-                    <MoreHorizontal className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-44">
-                  <DropdownMenuItem>
-                    <Settings className="mr-2 h-4 w-4" />
-                    Settings
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <TriangleAlert className="mr-2 h-4 w-4" />
-                    Add Alert
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Pin className="mr-2 h-4 w-4" />
-                    Pin to Dashboard
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Share2 className="mr-2 h-4 w-4" />
-                    Share
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="text-destructive">
-                    <Trash className="mr-2 h-4 w-4" />
-                    Remove
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <span
+                className={cn(
+                  "inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-xs font-medium transition-colors",
+                  stat.positive
+                    ? "bg-green-50 text-green-700"
+                    : "bg-red-50 text-red-700"
+                )}
+              >
+                {stat.delta > 0 ? (
+                  <ArrowUp className="h-3 w-3" />
+                ) : (
+                  <ArrowDown className="h-3 w-3" />
+                )}
+                {Math.abs(stat.delta)}%
+              </span>
             </div>
 
             {/* Content */}
             <div className="grow p-5">
-              <div className="flex items-end justify-between gap-2">
-                <span className="text-2xl font-bold text-foreground">
-                  {stat.format
-                    ? stat.format(stat.value)
-                    : (stat.prefix || "") + formatNumber(stat.value) + (stat.suffix || "")}
-                </span>
-                <span
-                  className={cn(
-                    "inline-flex items-center gap-0.5 rounded-md px-2 py-0.5 text-xs font-medium",
-                    stat.positive
-                      ? "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-400"
-                      : "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-400"
-                  )}
-                >
-                  {stat.delta > 0 ? (
-                    <ArrowUp className="h-3 w-3" />
-                  ) : (
-                    <ArrowDown className="h-3 w-3" />
-                  )}
-                  {Math.abs(stat.delta)}%
-                </span>
-              </div>
+              <span className="text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+                {stat.format
+                  ? stat.format(stat.value)
+                  : (stat.prefix || "") + formatNumber(stat.value) + (stat.suffix || "")}
+              </span>
               <p className="mt-2 text-xs text-muted-foreground">
                 Vs last month:{" "}
                 <span className="font-medium text-foreground">
@@ -110,7 +77,7 @@ export function StatisticsCards({ stats, className }: StatisticsCardsProps) {
                 </span>
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
