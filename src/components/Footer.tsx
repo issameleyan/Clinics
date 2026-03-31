@@ -42,25 +42,10 @@ const Footer = () => {
   ];
 
   const contactInfo = [
-    {
-      icon: <Phone size={18} className="text-primary" />,
-      text: "+966 50 000 0000",
-      href: "tel:+966500000000",
-    },
-    {
-      icon: <MessageCircle size={18} className="text-primary" />,
-      text: t("واتساب", "WhatsApp"),
-      href: "https://wa.me/966500000000",
-    },
-    {
-      icon: <MapPin size={18} className="text-primary" />,
-      text: t("الرياض، حي الملقا", "Riyadh, Al-Malqa"),
-    },
-    {
-      icon: <Mail size={18} className="text-primary" />,
-      text: "info@smileclinic.sa",
-      href: "mailto:info@smileclinic.sa",
-    },
+    { icon: <Phone size={18} className="text-primary" />, text: "+966 50 000 0000", href: "tel:+966500000000" },
+    { icon: <MessageCircle size={18} className="text-primary" />, text: t("واتساب", "WhatsApp"), href: "https://wa.me/966500000000" },
+    { icon: <MapPin size={18} className="text-primary" />, text: t("الرياض، حي الملقا", "Riyadh, Al-Malqa") },
+    { icon: <Mail size={18} className="text-primary" />, text: "info@smileclinic.sa", href: "mailto:info@smileclinic.sa" },
   ];
 
   const socialLinks = [
@@ -75,13 +60,13 @@ const Footer = () => {
       <div className="relative z-10">
         <div className="container-tight px-4 py-12">
           <div className="grid gap-8 md:grid-cols-4">
-            {/* Brand section */}
+            {/* Brand section - Bigger logo */}
             <div>
-              <Link to="/" className="mb-4 flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-bold">
+              <Link to="/" className="mb-4 flex items-center gap-3">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground text-xl font-bold">
                   ♥
                 </span>
-                <span className="text-lg font-bold text-primary-foreground">
+                <span className="text-xl font-bold text-primary-foreground">
                   {t("عيادة الابتسامة", "Smile Clinic")}
                 </span>
               </Link>
