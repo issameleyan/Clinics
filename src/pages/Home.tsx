@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Star, Shield, Users, Award, Phone, MessageCircle, MapPin, Clock, Quote, Stethoscope } from "lucide-react";
+import { StatisticsCards } from "@/components/ui/statistics-card-1";
 import { useLang } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import HeroSection from "@/components/ui/hero-section-9";
@@ -16,11 +17,37 @@ const Home = () => {
   const { t, lang } = useLang();
   const navigate = useNavigate();
 
-  const trustItems = [
-    { icon: Users, value: "+1000", label: t("مريض راضٍ", "Happy Patients") },
-    { icon: Shield, value: t("أحدث", "Latest"), label: t("الأجهزة الطبية", "Medical Equipment") },
-    { icon: Award, value: t("أطباء", "Expert"), label: t("متخصصين", "Doctors") },
-    { icon: Clock, value: t("مواعيد", "Flexible"), label: t("مرنة", "Hours") },
+  const clinicStats = [
+    {
+      title: t("إجمالي المرضى", "Total Patients"),
+      value: 12380,
+      delta: 15.1,
+      lastMonth: 10592,
+      positive: true,
+    },
+    {
+      title: t("المواعيد المحجوزة", "Booked Appointments"),
+      value: 1902,
+      delta: 8.3,
+      lastMonth: 1756,
+      positive: true,
+    },
+    {
+      title: t("نسبة الرضا", "Satisfaction Rate"),
+      value: 98,
+      delta: 0.4,
+      lastMonth: 97,
+      positive: true,
+      suffix: "%",
+    },
+    {
+      title: t("سنوات الخبرة", "Years of Experience"),
+      value: 15,
+      delta: 6.7,
+      lastMonth: 14,
+      positive: true,
+      suffix: "+",
+    },
   ];
 
   const serviceAccordionItems = [
@@ -128,16 +155,12 @@ const Home = () => {
         <HeroSection {...heroData} />
       </div>
 
-      {/* TRUST */}
+      {/* TRUST - Statistics Cards */}
       <section className="section-padding bg-section-alt">
-        <div className="container-tight grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
-          {trustItems.map((item, i) => (
-            <div key={i} className="flex flex-col items-center rounded-lg bg-background p-6 text-center shadow-sm border border-border">
-              <item.icon size={28} className="mb-2 text-primary" />
-              <span className="text-2xl font-bold text-foreground">{item.value}</span>
-              <span className="text-sm text-muted-foreground">{item.label}</span>
-            </div>
-          ))}
+        <div className="container-tight">
+          <h2 className="mb-2 text-center text-3xl font-bold text-foreground">{t("أرقامنا تتحدث", "Our Numbers Speak")}</h2>
+          <p className="mb-8 text-center text-muted-foreground">{t("نتائج حقيقية نفخر بها", "Real results we're proud of")}</p>
+          <StatisticsCards stats={clinicStats} />
         </div>
       </section>
 
