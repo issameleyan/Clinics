@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
-import { Star, Shield, Users, Award, Phone, MessageCircle, MapPin, Clock, Quote } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Star, Shield, Users, Award, Phone, MessageCircle, MapPin, Clock, Quote, Stethoscope } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { HeroSection4 } from "@/components/blocks/hero-section-4";
+import HeroSection from "@/components/ui/hero-section-9";
 import { LandingAccordionItem } from "@/components/ui/interactive-image-accordion";
+import { TestimonialsSection } from "@/components/ui/testimonial-v2";
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 import heroImg from "@/assets/hero-dental.jpg";
 import beforeAfter2 from "@/assets/before-after-2.jpg";
@@ -13,6 +14,7 @@ import doctor3 from "@/assets/doctor-3.jpg";
 
 const Home = () => {
   const { t, lang } = useLang();
+  const navigate = useNavigate();
 
   const trustItems = [
     { icon: Users, value: "+1000", label: t("مريض راضٍ", "Happy Patients") },
@@ -63,15 +65,56 @@ const Home = () => {
   ];
 
   const testimonials = [
-    { text: t("زرت عيادات كثير قبل كذا، بس هنا أول مرة أحس بالراحة. العلاج كان بدون ألم فعلاً", "I visited many clinics before, but here was the first time I felt comfortable. Treatment was truly painless"), name: t("محمد ر.", "Mohammed R.") },
-    { text: t("النتيجة كانت واضحة من أول جلسة. تبييض أسنان ممتاز والفريق متعاون جداً", "Results were clear from the first session. Excellent whitening and very cooperative team"), name: t("نورة ع.", "Noura A.") },
-    { text: t("أفضل تجربة زراعة أسنان. الطبيب شرح كل شي بالتفصيل وما حسيت بأي خوف", "Best implant experience. Doctor explained everything in detail and I felt no fear"), name: t("عبدالله ك.", "Abdullah K.") },
-    { text: t("العيادة نظيفة ومرتبة والمواعيد دقيقة. ما انتظرت أبداً", "Clinic is clean and organized, appointments are precise. Never had to wait"), name: t("فاطمة م.", "Fatima M.") },
+    { text: t("زرت عيادات كثير قبل كذا، بس هنا أول مرة أحس بالراحة. العلاج كان بدون ألم فعلاً", "I visited many clinics before, but here was the first time I felt comfortable. Treatment was truly painless"), image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150", name: t("محمد ر.", "Mohammed R."), role: t("مريض", "Patient") },
+    { text: t("النتيجة كانت واضحة من أول جلسة. تبييض أسنان ممتاز والفريق متعاون جداً", "Results were clear from the first session. Excellent whitening and very cooperative team"), image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150", name: t("نورة ع.", "Noura A."), role: t("مريضة", "Patient") },
+    { text: t("أفضل تجربة زراعة أسنان. الطبيب شرح كل شي بالتفصيل وما حسيت بأي خوف", "Best implant experience. Doctor explained everything in detail and I felt no fear"), image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150", name: t("عبدالله ك.", "Abdullah K."), role: t("مريض", "Patient") },
+    { text: t("العيادة نظيفة ومرتبة والمواعيد دقيقة. ما انتظرت أبداً", "Clinic is clean and organized, appointments are precise. Never had to wait"), image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150", name: t("فاطمة م.", "Fatima M."), role: t("مريضة", "Patient") },
+    { text: t("تجربة ممتازة من البداية للنهاية. أنصح الكل يجربون", "Excellent experience from start to finish. I recommend everyone tries it"), image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150", name: t("سارة ع.", "Sara A."), role: t("مريضة", "Patient") },
+    { text: t("الدكتور كان صبور جداً وشرح لي كل خطوة. شكراً لكم", "The doctor was very patient and explained every step. Thank you"), image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150", name: t("خالد م.", "Khalid M."), role: t("مريض", "Patient") },
+    { text: t("أسعارهم معقولة مقارنة بالجودة العالية. راح أرجع لهم دايماً", "Their prices are reasonable compared to the high quality. I'll always come back"), image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150&h=150", name: t("ريم ح.", "Reem H."), role: t("مريضة", "Patient") },
+    { text: t("تعامل راقي واحترافي. من أفضل العيادات اللي زرتها", "Elegant and professional treatment. One of the best clinics I've visited"), image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150", name: t("أحمد س.", "Ahmed S."), role: t("مريض", "Patient") },
+    { text: t("النظافة والتعقيم على أعلى مستوى. أحسست بالأمان", "Hygiene and sterilization at the highest level. I felt safe"), image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150", name: t("منى ك.", "Mona K."), role: t("مريضة", "Patient") },
   ];
+
+  const heroData = {
+    title: (
+      <>
+        {t("ابتسامة صحية تبدأ من", "A Healthy Smile Starts at")}{" "}
+        <span className="text-primary">{t("عيادة الابتسامة", "Smile Clinic")}</span>
+      </>
+    ),
+    subtitle: t(
+      "رعاية متكاملة لأسنانك باستخدام أحدث التقنيات في الرياض، مع تجربة مريحة ونتائج واضحة",
+      "Complete dental care using the latest technologies in Riyadh, with a comfortable experience and clear results"
+    ),
+    actions: [
+      {
+        text: t("احجز موعد الآن", "Book Now"),
+        onClick: () => navigate("/booking"),
+        variant: "default" as const,
+        className: "gradient-cta border-0 text-primary-foreground",
+      },
+      {
+        text: t("تواصل عبر واتساب", "Chat on WhatsApp"),
+        onClick: () => window.open("https://wa.me/966500000000", "_blank"),
+        variant: "outline" as const,
+      },
+    ],
+    stats: [
+      { value: "+1000", label: t("مريض راضٍ", "Happy Patients"), icon: <Users size={20} /> },
+      { value: t("أطباء متخصصين", "Expert Doctors"), label: "", icon: <Stethoscope size={20} /> },
+      { value: t("أحدث الأجهزة", "Latest Equipment"), label: "", icon: <Shield size={20} /> },
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
+    ],
+  };
 
   return (
     <div>
-      {/* HERO - using hero-section-4 with animated gradient background */}
+      {/* HERO */}
       <div className="relative">
         <AnimatedGradientBackground
           gradientColors={["#f0fdfa", "#0D9488", "#10B981", "#0D9488", "#f0fdfa", "#10B981", "#0D9488"]}
@@ -82,25 +125,7 @@ const Home = () => {
           breathingRange={3}
           containerClassName="opacity-20"
         />
-        <HeroSection4
-          badge={t("⭐ تقييم عالي من مرضانا", "⭐ Highly rated by our patients")}
-          headline={t(
-            "ابتسامة صحية تبدأ من عيادة الابتسامة",
-            "A Healthy Smile Starts at Smile Clinic"
-          )}
-          subheadline={t(
-            "رعاية متكاملة لأسنانك باستخدام أحدث التقنيات في الرياض، مع تجربة مريحة ونتائج واضحة",
-            "Complete dental care using the latest technologies in Riyadh, with a comfortable experience and clear results"
-          )}
-          trustLine={t("موثوق من مئات المرضى في الرياض", "Trusted by hundreds of patients in Riyadh")}
-          primaryCta={{ text: t("احجز موعد الآن", "Book Now"), href: "/booking" }}
-          secondaryCta={{
-            text: t("تواصل عبر واتساب", "Chat on WhatsApp"),
-            href: "https://wa.me/966500000000",
-            icon: <MessageCircle size={18} className="me-2" />,
-          }}
-          backgroundImage={heroImg}
-        />
+        <HeroSection {...heroData} />
       </div>
 
       {/* TRUST */}
@@ -116,7 +141,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SERVICES - using interactive-image-accordion */}
+      {/* SERVICES */}
       <section className="section-padding">
         <div className="container-tight">
           <LandingAccordionItem
@@ -186,25 +211,12 @@ const Home = () => {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="section-padding">
-        <div className="container-tight">
-          <h2 className="mb-10 text-center text-3xl font-bold text-foreground">{t("آراء مرضانا", "Patient Reviews")}</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {testimonials.map((rev, i) => (
-              <div key={i} className="rounded-lg border border-border bg-background p-6">
-                <Quote size={20} className="mb-3 text-primary/40" />
-                <p className="mb-4 text-sm leading-relaxed text-foreground">{rev.text}</p>
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} size={14} className="fill-primary text-primary" />
-                  ))}
-                </div>
-                <p className="mt-2 text-xs font-semibold text-muted-foreground">{rev.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection
+        badge={t("آراء مرضانا", "Patient Reviews")}
+        title={t("ماذا يقول مرضانا", "What Our Patients Say")}
+        description={t("تجارب حقيقية من مرضانا الكرام", "Real experiences from our valued patients")}
+        testimonials={testimonials}
+      />
 
       {/* STRONG CTA */}
       <section className="gradient-hero section-padding text-center">
