@@ -155,16 +155,12 @@ const Home = () => {
         <HeroSection {...heroData} />
       </div>
 
-      {/* TRUST */}
+      {/* TRUST - Statistics Cards */}
       <section className="section-padding bg-section-alt">
-        <div className="container-tight grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
-          {trustItems.map((item, i) => (
-            <div key={i} className="flex flex-col items-center rounded-lg bg-background p-6 text-center shadow-sm border border-border">
-              <item.icon size={28} className="mb-2 text-primary" />
-              <span className="text-2xl font-bold text-foreground">{item.value}</span>
-              <span className="text-sm text-muted-foreground">{item.label}</span>
-            </div>
-          ))}
+        <div className="container-tight">
+          <h2 className="mb-2 text-center text-3xl font-bold text-foreground">{t("أرقامنا تتحدث", "Our Numbers Speak")}</h2>
+          <p className="mb-8 text-center text-muted-foreground">{t("نتائج حقيقية نفخر بها", "Real results we're proud of")}</p>
+          <StatisticsCards stats={clinicStats} />
         </div>
       </section>
 
