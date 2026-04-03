@@ -71,7 +71,7 @@ const floatingVariants = {
 
 const HeroSection = ({ title, subtitle, actions, stats, images, className }: HeroSectionProps) => {
   return (
-    <section className={cn('relative overflow-hidden bg-background py-16 md:py-24 lg:py-32', className)}>
+    <section className={cn('relative overflow-hidden bg-background py-12 md:py-24 lg:py-32', className)}>
       <motion.div
         className="container-tight mx-auto px-4 md:px-8"
         variants={containerVariants}
