@@ -106,10 +106,10 @@ const HeroSection = ({ title, subtitle, actions, stats, images, className }: Her
                 </Button>
               ))}
             </motion.div>
-            <motion.div className="flex flex-wrap gap-6 pt-4" variants={itemVariants}>
+            <motion.div className="flex flex-wrap gap-4 pt-4 sm:gap-6" variants={itemVariants}>
               {stats.map((stat, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <div key={index} className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
                     {stat.icon}
                   </div>
                   <div>

@@ -65,7 +65,7 @@ const Doctors = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/70" />
         </div>
         <div className="container-tight relative z-10 py-8 md:py-12">
-          <h1 className="text-4xl font-bold text-primary-foreground md:text-5xl">{t("أطباؤنا", "Our Doctors")}</h1>
+          <h1 className="text-3xl font-bold text-primary-foreground sm:text-4xl md:text-5xl">{t("أطباؤنا", "Our Doctors")}</h1>
           <p className="mt-4 text-lg text-primary-foreground/90">{t("فريق طبي تثق فيه ويهتم بك", "A medical team you trust and that cares for you")}</p>
         </div>
       </section>
