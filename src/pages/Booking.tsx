@@ -220,7 +220,7 @@ const Booking = () => {
       {/* Bottom CTA with second image */}
       <section className="section-padding bg-section-alt">
         <div className="container-tight">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="grid items-center gap-8 md:gap-10 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
