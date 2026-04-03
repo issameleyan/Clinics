@@ -71,7 +71,7 @@ const floatingVariants = {
 
 const HeroSection = ({ title, subtitle, actions, stats, images, className }: HeroSectionProps) => {
   return (
-    <section className={cn('relative overflow-hidden bg-background py-16 md:py-24 lg:py-32', className)}>
+    <section className={cn('relative overflow-hidden bg-background py-12 md:py-24 lg:py-32', className)}>
       <motion.div
         className="container-tight mx-auto px-4 md:px-8"
         variants={containerVariants}
@@ -82,7 +82,7 @@ const HeroSection = ({ title, subtitle, actions, stats, images, className }: Her
           {/* Left Column: Text Content */}
           <div className="space-y-8">
             <motion.h1
-              className="text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl"
+              className="text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
               variants={itemVariants}
             >
               {title}
@@ -106,10 +106,10 @@ const HeroSection = ({ title, subtitle, actions, stats, images, className }: Her
                 </Button>
               ))}
             </motion.div>
-            <motion.div className="flex flex-wrap gap-6 pt-4" variants={itemVariants}>
+            <motion.div className="flex flex-wrap gap-4 pt-4 sm:gap-6" variants={itemVariants}>
               {stats.map((stat, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <div key={index} className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
                     {stat.icon}
                   </div>
                   <div>
