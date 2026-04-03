@@ -28,7 +28,7 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <Navbar />
-          <main className="pb-16 md:pb-0">
+          <main>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />

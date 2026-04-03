@@ -29,7 +29,7 @@ const Booking = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl font-bold text-primary-foreground sm:text-4xl md:text-5xl"
+            className="text-4xl font-bold text-primary-foreground md:text-5xl"
           >
             {t("لا تأجّل ابتسامتك", "Don't Delay Your Smile")}
           </motion.h1>
@@ -47,7 +47,7 @@ const Booking = () => {
       {/* Main booking section */}
       <section className="section-padding">
         <div className="container-tight">
-          <div className="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             {/* Left — Image + Trust */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -220,7 +220,7 @@ const Booking = () => {
       {/* Bottom CTA with second image */}
       <section className="section-padding bg-section-alt">
         <div className="container-tight">
-          <div className="grid items-center gap-8 md:gap-10 lg:grid-cols-2">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
