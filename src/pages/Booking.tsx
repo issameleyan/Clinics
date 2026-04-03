@@ -47,7 +47,7 @@ const Booking = () => {
       {/* Main booking section */}
       <section className="section-padding">
         <div className="container-tight">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
             {/* Left — Image + Trust */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
