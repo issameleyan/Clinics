@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 const Navbar = () => {
   const { lang, setLang, t } = useLang();
@@ -66,49 +71,43 @@ const Navbar = () => {
         </button>
       </nav>
 
-      {/* Mobile menu using Dialog */}
-      <Dialog open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-        <DialogContent className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-card px-4 py-4 sm:px-6 sm:py-6 sm:max-w-sm sm:ring-1 sm:ring-border lg:hidden [&>button]:hidden">
-          <div className="flex items-center justify-between">
-            <span className="text-lg font-bold text-primary">
+      {/* Mobile menu using Sheet */}
+      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+        <SheetContent side="right" className="w-[280px] sm:w-[320px] p-0">
+          <SheetHeader className="px-5 pt-5 pb-2">
+            <SheetTitle className="text-lg font-bold text-primary text-start">
               {t("عيادة الابتسامة", "Smile Clinic")}
-            </span>
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="-m-2.5 rounded-md p-2.5 text-muted-foreground"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-          <div className="mt-6 space-y-2">
+            </SheetTitle>
+          </SheetHeader>
+          <div className="flex flex-col px-4 py-4 space-y-1">
             {links.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block rounded-lg px-3 py-2 text-base font-semibold transition-colors hover:bg-secondary ${
-                  location.pathname === l.to ? "text-primary" : "text-foreground"
+                className={`block rounded-lg px-3 py-2.5 text-base font-semibold transition-colors hover:bg-secondary ${
+                  location.pathname === l.to ? "text-primary bg-secondary/50" : "text-foreground"
                 }`}
               >
                 {l.label}
               </Link>
             ))}
-            <div className="pt-4 flex items-center gap-3">
+            <div className="pt-4 border-t border-border mt-2 flex flex-col gap-3">
               <button
                 onClick={() => setLang(lang === "ar" ? "en" : "ar")}
-                className="rounded-md border border-border px-3 py-1.5 text-xs font-semibold"
+                className="self-start rounded-md border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
               >
                 {lang === "ar" ? "EN" : "عربي"}
               </button>
-              <Button asChild size="sm" className="flex-1 gradient-cta border-0 text-primary-foreground">
+              <Button asChild size="default" className="w-full gradient-cta border-0 text-primary-foreground">
                 <Link to="/booking" onClick={() => setMobileMenuOpen(false)}>
                   {t("احجز موعد", "Book Now")}
                 </Link>
               </Button>
             </div>
           </div>
-        </DialogContent>
-      </Dialog>
+        </SheetContent>
+      </Sheet>
     </header>
   );
 };
