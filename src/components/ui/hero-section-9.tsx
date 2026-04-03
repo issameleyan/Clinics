@@ -82,7 +82,7 @@ const HeroSection = ({ title, subtitle, actions, stats, images, className }: Her
           {/* Left Column: Text Content */}
           <div className="space-y-8">
             <motion.h1
-              className="text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl"
+              className="text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
               variants={itemVariants}
             >
               {title}
